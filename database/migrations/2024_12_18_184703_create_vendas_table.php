@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('vendas', function (Blueprint $table) {
             $table->id();
             $table->double('valor', 10, 2);
-            $table->integer('numero')->length(11);
-            $table->dateTime('data_emissao')->unique();
+            $table->string('numero', 50);
+            $table->dateTime('data_emissao');
+            $table->foreignId('cliente_id')->references('id')->on('clientes');
             $table->timestamps();
         });
     }

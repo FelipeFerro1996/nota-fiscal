@@ -8,9 +8,14 @@ use Exception;
 
 class ClientesRepository implements ClientesInterface
 {
-    public function getAllClientes($request = NULL){
+    public function getAllClientes($request = NULL, $nao_paginar = NULL){
         $clientes = new Clientes();
-        $clientes = $clientes->paginate(10);
+
+        if(!empty($nao_paginar)){
+            $clientes = $clientes->get();
+        }else{
+            $clientes = $clientes->paginate(10);
+        }
         return $clientes;
     }
 

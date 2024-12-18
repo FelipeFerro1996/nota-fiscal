@@ -6,7 +6,7 @@ use App\Models\Clientes;
 
 interface ClientesInterface
 {
-    public function getAllClientes($request = NULL);
+    public function getAllClientes($request = NULL, $nao_paginar = NULL);
 
     public function insertCliente($request = NULL): Clientes;
 
