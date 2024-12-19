@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class VendasRequest extends FormRequest
 {
@@ -21,10 +22,16 @@ class VendasRequest extends FormRequest
      */
     public function rules(): array
     {
+        $venda_id = $this->route('vendas'); 
+
         return [
             'cliente_id'=>'required',
             'data_emissao'=>'required|date',
             'numero'=>'required',
+            'numero' => [
+                'required',
+                Rule::unique('vendas')->ignore($venda_id),
+            ],
             'valor'=>'required'
         ];
     }

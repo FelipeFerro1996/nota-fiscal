@@ -5,7 +5,7 @@
         <ol class="breadcrumb">
         <li class="breadcrumb-item">Vendas</li>
         <li class="breadcrumb-item"><a href="{{route('vendas.index')}}">Lista Vendas</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{{!empty($venda->id)?'Alterar Cliente : '.$venda->cliente->nome:'Cadastro'}}</li>
+        <li class="breadcrumb-item active" aria-current="page">{{!empty($venda->id)?'Cadastro'.$venda->cliente->nome:'Editar'}}</li>
         </ol>
     </nav>
     <div class="card">
@@ -27,9 +27,9 @@
                             value="{{old('numero')??$venda->numero??''}}">
                     </div>
 
-                    <div class="col-md-6 p-2">
+                    <div class="col-md-5 p-2">
                         <label for="cliente_id" class="form-label">Cliente</label>
-                        <select name="cliente_id" id="cliente_id">
+                        <select name="cliente_id" id="cliente_id" class="form-select">
                             <option value="">Selecione</option>
                             @foreach ($clientes as $valor)
                                 <option value="{{$valor->id}}" {{$valor->id == ($venda->cliente_id??old('cliente_id')??'') ? 'selected' : ''}}>{{$valor->nome}}</option>                                
@@ -46,11 +46,11 @@
                             value="{{old('valor')??$venda->valor??''}}">
                     </div>
 
-                    <div class="col-md-4 p-2">
+                    <div class="col-md-3 p-2">
                         <label for="data_emissao" class="form-label">Data</label>
                         <input 
                             name="data_emissao"
-                            type="date" 
+                            type="datetime-local" 
                             class="form-control" 
                             value="{{old('data_emissao')??$venda->data_emissao??''}}">
                     </div>

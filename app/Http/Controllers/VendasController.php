@@ -33,7 +33,12 @@ class VendasController extends Controller
      */
     public function create()
     {
-        return view('vendas.formVendas');
+        $clientes = $this->ciente_repository->getAllClientes(nao_paginar:1);
+
+        $dados = [
+            'clientes'=>$clientes
+        ];
+        return view('vendas.formVendas', $dados);
     }
 
     /**
@@ -69,7 +74,8 @@ class VendasController extends Controller
         $clientes = $this->ciente_repository->getAllClientes(nao_paginar:1);
 
         $dados = [
-            'venda'=>$venda
+            'venda'=>$venda,
+            'clientes'=>$clientes
         ];
 
         return view('vendas.formVendas', $dados);
